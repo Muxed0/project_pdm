@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://world/facility/camera.gd" type="Script" id=1]
+[ext_resource path="res://world/facility/selection_tool.gd" type="Script" id=2]
+[ext_resource path="res://world/facility/ah yeah.png" type="Texture" id=3]
+[ext_resource path="res://world/facility/facility.gd" type="Script" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+[node name="facility" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="background" type="Sprite" parent="."]
+position = Vector2( 962, 545.625 )
+scale = Vector2( 3.852, 3.93773 )
+texture = ExtResource( 3 )
+
+[node name="selection_box" type="Area2D" parent="." groups=["selection"]]
+script = ExtResource( 2 )
+
+[node name="selection_hitbox" type="CollisionShape2D" parent="selection_box"]
+visible = false
+shape = SubResource( 1 )
+
+[node name="selection_outline" type="Line2D" parent="selection_box"]
+visible = false
+points = PoolVector2Array( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 )
+width = 2.0
+
+[node name="camera" type="Camera2D" parent="."]
+current = true
+script = ExtResource( 1 )
