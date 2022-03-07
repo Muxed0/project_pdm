@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ah yeah.png-de7dfd343118d25dbe5aa95e9f97698a.stex"
+path="res://.import/facility_1.png-58798f6b5a3096f7eeee61e103869ea8.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://world/facility/ah yeah.png"
-dest_files=[ "res://.import/ah yeah.png-de7dfd343118d25dbe5aa95e9f97698a.stex" ]
+source_file="res://world/facility/facility_1.png"
+dest_files=[ "res://.import/facility_1.png-58798f6b5a3096f7eeee61e103869ea8.stex" ]
 
 [params]
 

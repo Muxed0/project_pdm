@@ -1,24 +1,36 @@
 extends Node2D
 
 var camera = 0
+var window_size = 0
 
 var employee = preload("res://entities/employees/employee.tscn")
 var employee_instance = 0
 
+var pawn = preload("res://entities/employees/pawn.tscn")
+var pawn_instance = 0
+var pawn_select_
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	camera = get_node("camera")
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+	window_size = Vector2(get_viewport().get_size()[0], get_viewport().get_size()[1])
 
 func _input(event):
-	if Input.is_key_pressed(KEY_EQUAL):
-		add_employee()
+	if event is InputEventKey:
+		if event.pressed and not event.is_echo():
+			if event.scancode == KEY_EQUAL:
+				add_employee()
+			elif event.scancode == KEY_P:
+				add_pawn()
 
 func add_employee():
 	employee_instance = employee.instance()
 	self.add_child(employee_instance)
-	$selection_box.connect("selection_reset", employee_instance, "_on_selection_box_selection_reset")
-	employee_instance.position =  camera.zoom.x * get_viewport().get_mouse_position() + camera.position
+	$selection_tool.connect("selection_reset", employee_instance, "_on_selection_tool_selection_reset")
+	employee_instance.position =  camera.zoom.x * (get_viewport().get_mouse_position()-window_size/2) + camera.position
+
+func add_pawn():
+	pawn_instance = pawn.instance()
+	self.add_child(pawn_instance)
+	$selection_tool.connect("selection_reset", pawn_instance.get_node("hitbox"), "_on_selection_tool_selection_reset")
+	pawn_instance.position =  camera.zoom.x * (get_viewport().get_mouse_position()-window_size/2) + camera.position
